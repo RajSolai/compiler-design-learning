@@ -7,7 +7,7 @@
 %%
 [0-9]	{yylval= *yytext;return NUMBER;}
 [a-z]	{yylval= *yytext;return LETTER;}
-[+-;=]		return *yytext;
+[*+-;=]		return *yytext;
 .		;
 %%
 

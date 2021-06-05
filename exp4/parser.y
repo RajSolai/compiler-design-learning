@@ -16,6 +16,7 @@ expr: LETTER'='stmt';' {makeStatement('=',(char)$1,(char)$3);}
 stmt: 	stmt'+'stmt {$$ = makeStatement('+',(char)$1,(char)$3);}
 		| stmt'-'stmt {$$ = makeStatement('-',(char)$1,(char)$3);}
 		| NUMBER {$$=$1;}
+		| stmt'*'stmt {$$ = makeStatement('*',(char)$1,(char)$3);}
 		| LETTER {(char)$1;}
 		;
 
@@ -29,6 +30,9 @@ char *makeStatement(char operator,char operand_one , char operand_two){
 	}else if(operator=='-'){
 		printf ("%c:=\t%c-%c\n",operand_one,operand_one,operand_two);
 		temp = (char*)("%c-%c",operand_two,operand_one);
+	}else if(operator=='*'){
+		printf ("%c:=\t%c*%c\n",operand_one,operand_one,operand_two);
+		temp = (char*)("%c*%c",operand_two,operand_one);
 	}else{
 		printf ("%c:=\t%c",operand_one,operand_two);
 		temp = (char*)("%c=%c",operand_one,operand_two);	
